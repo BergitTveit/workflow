@@ -6,7 +6,8 @@
     "scripts": {
         "build": "sass src/scss:dist/css",
         "start": "sass --watch src/scss:dist/css & live-server",
-        "lint": "eslint src/**/*.js"
+        "lint": "eslint src/**/*.js",
+        "format": "prettier --write src/**/*.js"
     },
     "keywords": [],
     "author": "Noroff",
@@ -22,6 +23,7 @@
         "sass": "^1.54.8"
     },
     "dependencies": {
-        "bootstrap-dark-5": "^1.1.3"
+        "bootstrap-dark-5": "^1.1.3",
+        "eslint-define-config": "^2.1.0"
     }
 }
