@@ -28,7 +28,9 @@ export default defineFlatConfig([
     {
         files: ['**/*.test.js'],
         languageOptions: {
-            globals: globals.jest,
+            globals: {
+                ...globals.jest,
+            },
         },
         plugins: {
             jest: pluginJest,
