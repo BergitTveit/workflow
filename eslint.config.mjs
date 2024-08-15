@@ -26,13 +26,20 @@ export default defineFlatConfig([
         },
     },
     {
-        files: ['**/*.test.js'],
+        files: ['**/*.test.js', '**/*.test.ts', '**/*.mock.js'],
         languageOptions: {
             globals: {
                 ...globals.jest,
                 ...globals.browser,
                 ...globals.node,
                 global: 'writable',
+                describe: 'readonly',
+                it: 'readonly',
+                expect: 'readonly',
+                beforeEach: 'readonly',
+                afterEach: 'readonly',
+                beforeAll: 'readonly',
+                afterAll: 'readonly',
             },
         },
         plugins: {

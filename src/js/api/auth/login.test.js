@@ -1,32 +1,9 @@
 import { login } from './login';
-
-const fetchMockTrue = jest.fn(() =>
-    Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ accessToken: 'mockedToken' }),
-    })
-);
-
-const fetchMockFalse = jest.fn(() =>
-    Promise.resolve({
-        ok: false,
-        statusText: 'Login failed',
-        json: () => Promise.resolve({}),
-    })
-);
-
-global.localStorage = {
-    mockedStorage: {},
-    setItem: jest.fn(function (key, value) {
-        this.mockedStorage[key] = JSON.parse(value);
-        console.log('localStorage.setItem called. Stored values: ', this.mockedStorage);
-    }),
-    getItem: jest.fn(function (key) {
-        return this.mockedStorage[key];
-    }),
-};
+import { fetchMockFalse, fetchMockTrue } from '../mocks/fetch.mock';
+import localStorageMock from '../mocks/localStorage.mock';
 
 describe('Login', () => {
+    global.localStorage = localStorageMock;
     it('should store the valid token in localStorage', async () => {
         global.fetch = fetchMockTrue;
         await login('not important', 'here');
