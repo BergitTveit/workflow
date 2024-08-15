@@ -1,9 +1,17 @@
 import { login } from './login';
 
-global.fetch = jest.fn(() =>
+const fetchMockTrue = jest.fn(() =>
     Promise.resolve({
         ok: true,
         json: () => Promise.resolve({ accessToken: 'mockedToken' }),
+    })
+);
+
+const fetchMockFalse = jest.fn(() =>
+    Promise.resolve({
+        ok: false,
+        statusText: 'Login failed',
+        json: () => Promise.resolve({}),
     })
 );
 
@@ -20,7 +28,12 @@ global.localStorage = {
 
 describe('Login', () => {
     it('should store the valid token in localStorage', async () => {
-        await login('validEmail@noroff.no', 'validPassword');
+        global.fetch = fetchMockTrue;
+        await login('not important', 'here');
         expect(localStorage.getItem('token')).toBe('mockedToken');
+    });
+    it('should throw an exception when response from fetch is false', async () => {
+        global.fetch = fetchMockFalse;
+        await expect(login('not important', 'here')).rejects.toThrow('Login failed');
     });
 });

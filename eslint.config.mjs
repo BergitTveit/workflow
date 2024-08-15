@@ -30,6 +30,9 @@ export default defineFlatConfig([
         languageOptions: {
             globals: {
                 ...globals.jest,
+                ...globals.browser,
+                ...globals.node,
+                global: 'writable',
             },
         },
         plugins: {
