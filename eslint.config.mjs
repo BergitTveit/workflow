@@ -24,6 +24,7 @@ export default defineFlatConfig([
         },
         plugins: {
             prettier: pluginPrettier,
+            cypress: pluginCypress,
         },
         rules: {
             ...recommendedJsRules,
@@ -57,14 +58,20 @@ export default defineFlatConfig([
         },
     },
     {
-        files: ['**/*.cy.js', '**/*.cy.ts'],
+        files: ['**/*.cy.js', '**/*.cy.ts', '**/support/*.js'],
         languageOptions: {
             globals: {
                 ...globals.cypress,
-                describe: 'readonly',
-                it: 'readonly',
+                ...globals.browser,
+                ...globals.node,
                 cy: 'readonly',
                 Cypress: 'readonly',
+                describe: 'readonly',
+                it: 'readonly',
+                before: 'readonly',
+                beforeEach: 'readonly',
+                after: 'readonly',
+                afterEach: 'readonly',
             },
         },
         plugins: {
