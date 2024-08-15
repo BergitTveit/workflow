@@ -7,6 +7,7 @@ const localStorageMock = {
     getItem: jest.fn(function (key) {
         return this.mockedStorage[key];
     }),
+    removeItem: jest.fn(),
 };
 
 export default localStorageMock;
