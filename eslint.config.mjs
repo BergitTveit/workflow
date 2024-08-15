@@ -13,13 +13,17 @@ const prettierConfigRules = configPrettier.rules || {};
 export default defineFlatConfig([
     {
         languageOptions: {
-            globals: globals.browser,
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+                require: 'readonly',
+                module: 'readonly',
+            },
             ecmaVersion: 'latest',
             sourceType: 'module',
         },
         plugins: {
             prettier: pluginPrettier,
-            cypress: pluginCypress,
         },
         rules: {
             ...recommendedJsRules,
@@ -53,14 +57,22 @@ export default defineFlatConfig([
         },
     },
     {
-        files: ['**/*.cy.js', '**/*.cy.ts'], // Add Cypress test file patterns
+        files: ['**/*.cy.js', '**/*.cy.ts'],
+        languageOptions: {
+            globals: {
+                ...globals.cypress,
+                describe: 'readonly',
+                it: 'readonly',
+                cy: 'readonly',
+                Cypress: 'readonly',
+            },
+        },
         plugins: {
-            cypress: pluginCypress, // Add cypress plugin here
+            cypress: pluginCypress,
         },
         rules: {
             'cypress/no-assigning-return-values': 'warn',
             'cypress/no-unnecessary-waiting': 'warn',
-            // Add more Cypress-specific rules here
         },
     },
 ]);
