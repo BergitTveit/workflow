@@ -45,6 +45,7 @@
 
                     <div class="text-end">
                         <button
+                            data-cy="logOutBtn"
                             type="button"
                             class="btn btn-outline-warning me-2"
                             data-auth="logout"
@@ -119,6 +120,7 @@
                         <div class="form-floating mb-3">
                             <input
                                 required
+                                data-cy="emailInput"
                                 type="email"
                                 class="form-control"
                                 id="loginEmail"
@@ -132,6 +134,7 @@
                         <div class="form-floating mb-3">
                             <input
                                 required
+                                data-cy="passwordInput"
                                 type="password"
                                 minlength="8"
                                 class="form-control"
@@ -156,7 +159,9 @@
                         >
                             Register
                         </button>
-                        <button type="submit" class="btn btn-success">Login</button>
+                        <button data-cy="loginSubmit" type="submit" class="btn btn-success">
+                            Login
+                        </button>
                     </div>
                 </form>
             </div>
