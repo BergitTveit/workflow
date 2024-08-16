@@ -80,6 +80,7 @@ export default defineFlatConfig([
         rules: {
             'cypress/no-assigning-return-values': 'warn',
             'cypress/no-unnecessary-waiting': 'warn',
+            'no-undef': 'off',
         },
     },
 ]);

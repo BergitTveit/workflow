@@ -10,5 +10,13 @@ describe('Login Form Error Handling', () => {
         });
 
         cy.get('[data-cy="loginSubmit"]').click();
+        cy.on('window:alert', text => {
+            expect(text).to.equal(
+                'Either your username was not found or your password is incorrect'
+            );
+        });
+        cy.window().then(win => {
+            expect(win.localStorage.getItem('token')).to.be.null;
+        });
     });
 });
